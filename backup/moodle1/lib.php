@@ -32,7 +32,6 @@ class moodle1_block_analytics_handler extends moodle1_block_handler {
     protected function convert_configdata(array $olddata) {
         global $CFG;
         require_once($CFG->libdir . '/db/upgradelib.php');
-        $instanceid = $olddata['id'];
         $contextid  = $this->converter->get_contextid(CONTEXT_BLOCK, $olddata['id']);
         $decodeddata = base64_decode($olddata['configdata']);
         list($updated, $configdata) = upgrade_fix_serialized_objects($decodeddata);

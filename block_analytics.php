@@ -137,13 +137,6 @@ class block_analytics extends block_base {
         if (!empty($iframehtml) && isset($this->config->text)) {
             // rewrite url
             $this->config->text = file_rewrite_pluginfile_urls($this->config->text, 'pluginfile.php', $this->context->id, 'block_analytics', 'content', NULL);
-            // Default to FORMAT_HTML which is what will have been used before the
-            // editor was properly implemented for the block.
-            $format = FORMAT_HTML;
-            // Check to see if the format has been properly set on the config
-            if (isset($this->config->format)) {
-                $format = $this->config->format;
-            }
             $this->content->text = $iframehtml;
         } else {
             $this->content->text = '';
@@ -160,7 +153,6 @@ class block_analytics extends block_base {
      * @return bool
      */
     function instance_delete() {
-        global $DB;
         $fs = get_file_storage();
         $fs->delete_area_files($this->context->id, 'block_analytics');
         return true;
