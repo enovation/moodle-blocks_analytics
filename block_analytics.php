@@ -17,6 +17,8 @@
 /**
  * Block definition class for the block_analytics plugin.
  *
+ * Displays an embedded analytics dashboard within local-custompage pages.
+ *
  * @package   block_analytics
  * @copyright 2025 Enovation Solution
  * @license   http://www.gnu.org/copyleft/gpl.analytics GNU GPL v3 or later
@@ -26,18 +28,38 @@ use Firebase\JWT\JWT;
 
 class block_analytics extends block_base {
 
+    /**
+     * Initializes the block title.
+     *
+     * @return void
+     */
     function init() {
         $this->title = get_string('pluginname', 'block_analytics');
     }
 
+    /**
+     * Indicates that the block has global config settings.
+     *
+     * @return bool
+     */
     function has_config() {
         return true;
     }
 
+    /**
+     * Defines where this block can be used.
+     *
+     * @return array Allowed formats.
+     */
     function applicable_formats() {
         return array('all' => false, 'local-custompage' => true);
     }
 
+    /**
+     * Updates the block title if a custom title is set in the config.
+     *
+     * @return void
+     */
     function specialization() {
         if (isset($this->config->title)) {
             $this->title = $this->title = format_string($this->config->title, true, ['context' => $this->context]);
@@ -46,10 +68,21 @@ class block_analytics extends block_base {
         }
     }
 
+    /**
+     * Allows multiple instances of the block on the same page.
+     *
+     * @return bool
+     */
     function instance_allow_multiple() {
         return true;
     }
 
+    /**
+     * Generates the content of the block.
+     * Embeds a dashboard iframe with a JWT token if audience is set.
+     *
+     * @return stdClass|null The block content.
+     */
     function get_content() {
         global $CFG, $DB;
 
@@ -121,6 +154,11 @@ class block_analytics extends block_base {
         return $this->content;
     }
 
+    /**
+     * Deletes files associated with the block instance.
+     *
+     * @return bool
+     */
     function instance_delete() {
         global $DB;
         $fs = get_file_storage();
@@ -145,6 +183,11 @@ class block_analytics extends block_base {
         return true;
     }
 
+    /**
+     * Determines whether this block's content can include JavaScript.
+     *
+     * @return bool
+     */
     function content_is_trusted() {
         global $SCRIPT;
 
@@ -176,7 +219,7 @@ class block_analytics extends block_base {
         return (!empty($this->config->title) && parent::instance_can_be_docked());
     }
 
-    /*
+    /**
      * Add custom analytics attributes to aid with theming and styling
      *
      * @return array

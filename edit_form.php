@@ -17,12 +17,21 @@
 /**
  * Block edit form class for the block_analytics plugin.
  *
+ * Defines the form used for configuring an instance of the block_analytics block.
+ *
  * @package   block_analytics
  * @copyright 2025 Enovation Solution
  * @license   http://www.gnu.org/copyleft/gpl.analytics GNU GPL v3 or later
  */
 
 class block_analytics_edit_form extends block_edit_form {
+
+    /**
+     * Defines specific form elements for this block.
+     *
+     * @param MoodleQuickForm $mform The form being built.
+     * @return void
+     */
     protected function specific_definition($mform) {
 
         // Fields for editing HTML block title and contents.
@@ -45,6 +54,12 @@ class block_analytics_edit_form extends block_edit_form {
         $mform->setDefault('config_iframewidth', '1000');
     }
 
+    /**
+     * Populates the form with default values from the block configuration.
+     *
+     * @param stdClass $defaults The default values to populate the form with.
+     * @return void
+     */
     function set_data($defaults) {
         if (!empty($this->block->config) && !empty($this->block->config->text)) {
             $text = $this->block->config->text;
