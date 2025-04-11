@@ -11,6 +11,18 @@ The block_analytics plugin is a custom block that allows users to embed Metabase
 - Allows configuration of dashboard settings via the block interface.
 - Supports URL parameters for customizing the embedded dashboard.
 
+## Requirements ##
+
+This block relies on an external analytics service, such as https://www.metabase.com/, to display embedded dashboards via iframe.
+
+To use this plugin, you will need:
+- An active Metabase instance
+- A configured dashboard ID to embed.
+- A signed JWT token for secure embedding (see: https://www.metabase.com/docs/latest/embedding/start).
+
+You can set the required configuration values (URL and secret key) in the plugin settings within Moodle:
+- **metabaseurl** – base URL of your Metabase instance (e.g. `https://metabase.com`)
+- **metabasekey** – secret key used to sign the JWT token
 
 ## Dependencies ##
 
