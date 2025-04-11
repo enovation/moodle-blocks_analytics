@@ -54,7 +54,6 @@ class block_analytics extends block_base {
         global $CFG, $DB;
 
         require_once($CFG->libdir . '/filelib.php');
-        require_once($CFG->dirroot . '/blocks/analytics/vendor/autoload.php');
 
         $this->content = null;
 
