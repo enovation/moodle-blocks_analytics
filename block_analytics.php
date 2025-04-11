@@ -216,10 +216,10 @@ class block_analytics extends block_base {
      *
      * @return array
      */
-    function analytics_attributes() {
+    function html_attributes() {
         global $CFG;
 
-        $attributes = parent::analytics_attributes();
+        $attributes = parent::html_attributes();
 
         if (!empty($CFG->block_analytics_allowcssclasses)) {
             if (!empty($this->config->classes)) {
