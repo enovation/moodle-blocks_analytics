@@ -33,7 +33,7 @@ $string['analytics:myaddinstance'] = 'Add a new Analytics block to Dashboard';
 $string['newanalyticsblock'] = '(new Analytics block)';
 $string['pluginname'] = 'Analytics';
 $string['search:content'] = 'Analytics block content';
-$string['privacy:metadata:block'] = 'The Analytics block only shows data stored in other locations';
+$string['privacy:metadata'] = 'The Analytics block only shows data stored in other locations';
 
 $string['metabasekey'] = 'Metabase Key';
 $string['metabasekey_desc'] = 'Metabase Key';
